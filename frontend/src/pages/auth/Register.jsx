@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { register } from "../../api/api";
+//import { register } from "../../api/api";
 import "../../styles/auth.css";
 
 const DEPARTMENTS = [
