@@ -1,0 +1,35 @@
+<svg width="420" height="300" viewBox="0 0 420 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Secure hospital staff registration illustration</title>
+  <desc id="desc">A secure user card connected to hospital procurement workflow items.</desc>
+  <defs>
+    <linearGradient id="bg" x1="34" y1="18" x2="372" y2="282" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="126" y1="58" x2="288" y2="236" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#E0F2FE"/>
+    </linearGradient>
+    <filter id="shadow" x="58" y="28" width="308" height="240" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0F172A" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect x="18" y="18" width="384" height="264" rx="34" fill="url(#bg)" stroke="white" stroke-opacity="0.16"/>
+  <g filter="url(#shadow)">
+    <rect x="96" y="54" width="228" height="190" rx="26" fill="url(#panel)"/>
+  </g>
+  <circle cx="174" cy="118" r="32" fill="#2563EB"/>
+  <circle cx="174" cy="108" r="12" fill="#EFF6FF"/>
+  <path d="M149 143c6-15 44-15 50 0" fill="#EFF6FF"/>
+  <rect x="218" y="94" width="72" height="12" rx="6" fill="#93C5FD"/>
+  <rect x="218" y="120" width="58" height="10" rx="5" fill="#CBD5E1"/>
+  <rect x="218" y="143" width="66" height="10" rx="5" fill="#CBD5E1"/>
+  <rect x="128" y="178" width="164" height="36" rx="12" fill="#FFFFFF"/>
+  <path d="M151 196l10 10 22-26" stroke="#16A34A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="199" y="190" width="68" height="9" rx="4.5" fill="#60A5FA"/>
+  <path d="M112 78h38M108 91h24M286 220h42M296 205h24" stroke="#BFDBFE" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="306" cy="74" r="24" fill="#EFF6FF"/>
+  <path d="M306 62v24M294 74h24" stroke="#2563EB" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="116" cy="226" r="18" fill="#DBEAFE"/>
+  <path d="M108 226l6 6 12-14" stroke="#2563EB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

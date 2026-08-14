@@ -1,0 +1,38 @@
+<svg width="420" height="300" viewBox="0 0 420 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Hospital procurement tracking illustration</title>
+  <desc id="desc">A hospital building, procurement document, and tracking progress nodes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="40" y1="20" x2="360" y2="280" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="card" x1="105" y1="78" x2="308" y2="246" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#DBEAFE"/>
+    </linearGradient>
+    <filter id="shadow" x="40" y="25" width="340" height="250" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0F172A" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect x="18" y="18" width="384" height="264" rx="34" fill="url(#bg)" stroke="white" stroke-opacity="0.16"/>
+  <g filter="url(#shadow)">
+    <rect x="88" y="58" width="244" height="184" rx="26" fill="url(#card)"/>
+  </g>
+  <rect x="126" y="104" width="92" height="100" rx="10" fill="#2563EB"/>
+  <rect x="143" y="122" width="20" height="20" rx="4" fill="#E0F2FE"/>
+  <rect x="181" y="122" width="20" height="20" rx="4" fill="#E0F2FE"/>
+  <rect x="143" y="158" width="20" height="20" rx="4" fill="#E0F2FE"/>
+  <rect x="181" y="158" width="20" height="20" rx="4" fill="#E0F2FE"/>
+  <rect x="161" y="188" width="22" height="16" rx="3" fill="#BFDBFE"/>
+  <rect x="154" y="77" width="36" height="36" rx="9" fill="#EFF6FF"/>
+  <path d="M172 86v18M163 95h18" stroke="#2563EB" stroke-width="6" stroke-linecap="round"/>
+  <rect x="224" y="92" width="76" height="104" rx="12" fill="#FFFFFF"/>
+  <rect x="239" y="112" width="46" height="7" rx="3.5" fill="#93C5FD"/>
+  <rect x="239" y="132" width="38" height="7" rx="3.5" fill="#CBD5E1"/>
+  <rect x="239" y="152" width="46" height="7" rx="3.5" fill="#CBD5E1"/>
+  <path d="M246 181l8 8 20-22" stroke="#16A34A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M92 222h240" stroke="#BFDBFE" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="132" cy="222" r="11" fill="#22C55E" stroke="#F8FAFC" stroke-width="5"/>
+  <circle cx="210" cy="222" r="11" fill="#F59E0B" stroke="#F8FAFC" stroke-width="5"/>
+  <circle cx="288" cy="222" r="11" fill="#3B82F6" stroke="#F8FAFC" stroke-width="5"/>
+</svg>
