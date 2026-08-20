@@ -1,0 +1,664 @@
+/* ── Form Layout ────────────────────────────────────── */
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  max-width: 860px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.form-row.three-col {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.form-label .required {
+  color: var(--danger);
+  margin-left: 2px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  background: #fff;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+  outline: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder { color: #9CA3AF; }
+
+.form-textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.form-select { cursor: pointer; }
+
+.form-help {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+.form-error {
+  font-size: 0.78rem;
+  color: var(--danger);
+  margin-top: 5px;
+}
+
+.form-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+  margin-top: 28px;
+}
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── NCB Schedule Table ──────────────────────────────── */
+.schedule-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-top: 10px;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.schedule-table thead th {
+  background: #F8FAFC;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 11px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.schedule-table tbody tr { border-bottom: 1px solid var(--border); }
+.schedule-table tbody tr:last-child { border-bottom: none; }
+
+.schedule-table td {
+  padding: 10px 14px;
+  vertical-align: middle;
+}
+
+.schedule-table td:first-child {
+  color: var(--text-muted);
+  font-weight: 500;
+  width: 36px;
+}
+
+.schedule-table .task-name { font-weight: 500; color: var(--text-dark); }
+
+.schedule-table input[type="date"],
+.schedule-table input[type="text"] {
+  padding: 6px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  width: 100%;
+  min-width: 140px;
+  transition: border-color .2s;
+}
+
+.schedule-table input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+/* ── Role selector (admin) ───────────────────────────── */
+.role-select-wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .form-row { grid-template-columns: 1fr; }
+  .form-card { padding: 20px; }
+}
+
+/* ── Print helpers for NCB schedule ───────────────────────── */
+@media print {
+  .print-hide {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .payment-date-section {
+    break-inside: avoid;
+    background: #fff !important;
+  }
+
+  .schedule-table input,
+  .schedule-table select,
+  .payment-date-section input {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+}
+
+/* Professional form polish */
+.form-card {
+  max-width: 980px;
+  padding: 30px;
+}
+
+.form-label {
+  font-weight: 750;
+  color: #334155;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  min-height: 44px;
+  border-radius: 13px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.form-input:hover,
+.form-select:hover,
+.form-textarea:hover {
+  border-color: #94a3b8;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: #60a5fa;
+  box-shadow: var(--ring);
+}
+
+.form-textarea {
+  min-height: 112px;
+}
+
+.form-section-title {
+  border-bottom: 1px solid #dbe3ef;
+  padding-bottom: 12px;
+}
+
+.form-footer {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.schedule-table-wrapper {
+  border-radius: 18px;
+  box-shadow: var(--shadow-xs);
+}
+
+.schedule-table th {
+  background: #f1f5f9;
+  color: #334155;
+  font-weight: 800;
+}
+
+.schedule-table td,
+.schedule-table th {
+  padding: 13px 14px;
+}
+
+.role-select {
+  border-radius: 12px;
+}
+
+
+/* ── Procurement schedule / priority file polish ───────────────── */
+.create-procurement-card,
+.schedule-page-card {
+  max-width: 1320px;
+}
+
+.priority-file-name {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  font-weight: 800;
+  line-height: 1.35;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.priority-low { color: #15803d; background: #dcfce7; border-color: #bbf7d0; }
+.priority-medium { color: #1d4ed8; background: #dbeafe; border-color: #bfdbfe; }
+.priority-high { color: #b45309; background: #fef3c7; border-color: #fde68a; }
+.priority-urgent { color: #b91c1c; background: #fee2e2; border-color: #fecaca; }
+
+.task-link-button {
+  border: 0;
+  background: transparent;
+  color: #1d4ed8;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1.35;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.task-link-button:hover {
+  color: #1e40af;
+}
+
+.is-skipped-row {
+  opacity: 0.72;
+  background: #f8fafc;
+}
+
+.compact-schedule-table th,
+.compact-schedule-table td {
+  padding: 10px;
+}
+
+.task-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.task-modal-card {
+  width: min(720px, 100%);
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.28);
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+}
+
+.task-modal-task-name {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 14px 0 18px;
+}
+
+.task-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.task-modal-grid > div {
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px;
+  background: #f8fafc;
+}
+
+.task-modal-grid span {
+  display: block;
+  color: #64748b;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.task-modal-grid strong {
+  color: #0f172a;
+  word-break: break-word;
+}
+
+.committee-task-modal-card {
+  width: min(980px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+}
+
+.committee-appointment-panel {
+  margin-top: 18px;
+  border: 1px solid #dbeafe;
+  background: #f8fbff;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.committee-member-list {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.committee-member-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.committee-member-option.is-chairman {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+.committee-member-option input {
+  margin-top: 4px;
+}
+
+.committee-member-option span {
+  display: grid;
+  gap: 3px;
+}
+
+.committee-member-option small {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.committee-existing-appointments {
+  margin-top: 16px;
+}
+
+.mini-committee-table th,
+.mini-committee-table td {
+  padding: 10px;
+  font-size: 0.86rem;
+}
+
+.committee-selection-box,
+.committee-selected-box {
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 14px;
+  margin-top: 14px;
+}
+
+.committee-selection-row {
+  align-items: flex-end;
+  margin-bottom: 8px;
+}
+
+.committee-add-selection-group .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.committee-selected-table {
+  margin-top: 10px;
+}
+
+.committee-mail-actions {
+  margin-top: 14px;
+  gap: 10px;
+}
+
+/* NCB committee appointment popup visibility fix */
+.committee-task-modal-card {
+  display: flex;
+  flex-direction: column;
+  max-height: 94vh;
+  overflow-y: auto;
+}
+
+.committee-task-modal-card > .section-header {
+  order: 1;
+}
+
+.committee-task-modal-card > .task-modal-task-name {
+  order: 2;
+}
+
+.committee-task-modal-card > .committee-appointment-panel {
+  order: 3;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  border: 2px solid #2563eb;
+  background: #eff6ff;
+}
+
+.committee-task-modal-card > .task-modal-grid {
+  order: 4;
+}
+
+.committee-selection-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(220px, 1.5fr) minmax(160px, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+}
+
+.committee-add-selection-group .btn {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.committee-selected-box,
+.committee-existing-appointments,
+.committee-selection-box {
+  margin-top: 14px;
+}
+
+.mini-committee-table th,
+.mini-committee-table td {
+  padding: 8px 10px;
+  font-size: 0.86rem;
+}
+
+@media (max-width: 900px) {
+  .committee-selection-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Make committee email buttons clearly visible in the NCB task popup */
+.committee-email-quickbar,
+.committee-saved-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.committee-saved-header {
+  justify-content: space-between;
+}
+
+.committee-email-main-btn,
+.committee-row-email-btn {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.committee-row-email-btn {
+  margin-left: 8px;
+  padding: 7px 12px;
+  min-height: 34px;
+}
+
+.committee-mail-actions .btn-primary,
+.committee-mail-actions .btn-success {
+  font-weight: 700;
+}
+
+/* NCB task file tracking */
+.task-file-summary-button {
+  display: grid;
+  gap: 3px;
+  width: 100%;
+  min-width: 130px;
+  text-align: left;
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
+  color: #0f172a;
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.task-file-summary-button strong {
+  font-size: 0.9rem;
+}
+
+.task-file-summary-button span,
+.task-file-summary-button small {
+  color: #475569;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.task-file-tracking-panel {
+  margin-top: 18px;
+  border: 1px solid #bae6fd;
+  background: #f0f9ff;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.task-file-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin: 12px 0 14px;
+}
+
+.task-file-summary-cards > div {
+  border: 1px solid #dbeafe;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.task-file-summary-cards span {
+  display: block;
+  color: #64748b;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.task-file-summary-cards strong {
+  color: #0f172a;
+  font-size: 1.2rem;
+}
+
+.task-file-tracking-form {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.2fr) minmax(120px, .8fr) minmax(120px, .8fr) minmax(160px, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.task-file-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.task-file-actions .form-label {
+  width: 100%;
+}
+
+.task-file-tracking-table {
+  margin-top: 12px;
+}
+
+.committee-task-modal-card > .task-modal-grid {
+  order: 3;
+}
+
+.committee-task-modal-card > .task-file-tracking-panel {
+  order: 4;
+}
+
+.committee-task-modal-card > .committee-appointment-panel {
+  order: 5;
+}
+
+@media (max-width: 1000px) {
+  .task-file-tracking-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .task-file-summary-button {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    color: #111 !important;
+  }
+}
+
+.schedule-row-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}

@@ -1,0 +1,17 @@
+<svg width="640" height="520" viewBox="0 0 640 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="520" rx="34" fill="#EEF6FF"/>
+  <circle cx="500" cy="104" r="72" fill="#DBEAFE"/>
+  <circle cx="116" cy="420" r="82" fill="#CCFBF1"/>
+  <rect x="156" y="112" width="328" height="248" rx="28" fill="white" stroke="#BFDBFE" stroke-width="4"/>
+  <rect x="188" y="172" width="264" height="42" rx="12" fill="#E0F2FE"/>
+  <rect x="188" y="236" width="174" height="24" rx="10" fill="#CBD5E1"/>
+  <rect x="188" y="282" width="220" height="20" rx="10" fill="#E2E8F0"/>
+  <path d="M264 148V118C264 87.0721 289.072 62 320 62C350.928 62 376 87.0721 376 118V148" stroke="#2563EB" stroke-width="18" stroke-linecap="round"/>
+  <rect x="246" y="144" width="148" height="116" rx="24" fill="#1D4ED8"/>
+  <circle cx="320" cy="194" r="20" fill="#BFDBFE"/>
+  <rect x="312" y="208" width="16" height="34" rx="8" fill="#BFDBFE"/>
+  <path d="M447 364C491.183 364 527 328.183 527 284C527 239.817 491.183 204 447 204C402.817 204 367 239.817 367 284C367 328.183 402.817 364 447 364Z" fill="#14B8A6"/>
+  <path d="M420 285L440 305L477 266" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M107 172C137.928 172 163 146.928 163 116C163 85.0721 137.928 60 107 60C76.0721 60 51 85.0721 51 116C51 146.928 76.0721 172 107 172Z" fill="#DBEAFE"/>
+  <path d="M86 118H128M107 97V139" stroke="#2563EB" stroke-width="12" stroke-linecap="round"/>
+</svg>
