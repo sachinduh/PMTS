@@ -1,0 +1,16 @@
+import { useEffect, useState } from 'react';
+import Layout from '../../components/Layout';
+import { API_BASE_URL } from '../../api/api';
+
+const API = `${API_BASE_URL}/letters`;
+
+export default function CommitteeLetters() {
+  const [form, setForm] = useState({ procurement_id:'1', committee_type:'BEC', member_name:'', member_designation:'', member_email:'', letter_date:new Date().toISOString().slice(0,10), letter_body:'' });
+  const [letters, setLetters] = useState([]);
+  const [message, setMessage] = useState('');
+  const load = async () => { const r = await fetch(`${API}/get_committee_letters.php?procurement_id=${form.procurement_id}`); const d = await r.json(); setLetters(d.letters || []); };
+  useEffect(()=>{ load(); }, [form.procurement_id]);
+  const save = async e => { e.preventDefault(); const r = await fetch(`${API}/create_committee_letter.php`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(form)}); const d = await r.json(); setMessage(d.message); if(d.success){ load(); }};
+  const send = async id => { const r = await fetch(`${API}/send_committee_letter_email.php`, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({id})}); const d = await r.json(); setMessage(d.message); };
+  return <Layout><div className="page-wrapper animate-fade-in"><div className="page-title"> Committee Appointment Letters</div><div className="page-subtitle">Create, download, print and email BEC/Specification appointment letters</div>{message && <div className="alert alert-success">{message}</div>}<div className="card" style={{padding:20}}><form onSubmit={save} className="form-grid"><label>Procurement ID<input value={form.procurement_id} onChange={e=>setForm({...form,procurement_id:e.target.value})} /></label><label>Committee Type<select value={form.committee_type} onChange={e=>setForm({...form,committee_type:e.target.value})}><option>BEC</option><option>Specification</option></select></label><label>Member Name<input value={form.member_name} onChange={e=>setForm({...form,member_name:e.target.value})} required /></label><label>Designation<input value={form.member_designation} onChange={e=>setForm({...form,member_designation:e.target.value})} /></label><label>Email<input type="email" value={form.member_email} onChange={e=>setForm({...form,member_email:e.target.value})} /></label><label>Date<input type="date" value={form.letter_date} onChange={e=>setForm({...form,letter_date:e.target.value})} /></label><label>Letter Body<textarea value={form.letter_body} onChange={e=>setForm({...form,letter_body:e.target.value})} placeholder="Leave empty to use default official letter text" /></label><button className="btn btn-primary" type="submit">Create Letter</button></form></div><div className="card" style={{padding:20, marginTop:20}}><table className="data-table"><thead><tr><th>Date</th><th>Committee</th><th>Member</th><th>Email</th><th>Actions</th></tr></thead><tbody>{letters.map(l=><tr key={l.id}><td>{l.letter_date}</td><td>{l.committee_type}</td><td>{l.member_name}</td><td>{l.member_email}</td><td><a className="action-btn edit" href={`${API}/download_committee_letter.php?id=${l.id}`} target="_blank">Print/Download</a><button className="action-btn approve" onClick={()=>send(l.id)}>Email</button></td></tr>)}</tbody></table></div></div></Layout>;
+}
