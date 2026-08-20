@@ -28,7 +28,7 @@ export default function DirectorDashboard() {
           getDelayAlerts({ status: 'active' }),
         ]);
         const procs = procRes.data?.procurements || [];
-        const activeStatuses = ['submitted', 'under_review', 'specification_approval', 'tender_preparation', 'advertised', 'bid_received', 'technical_evaluation', 'bid_evaluation', 'financial_evaluation', 'awarded', 'purchase_order_issued', 'contract_signed', 'on_hold'];
+        const activeStatuses = ['submitted', 'under_review', 'specification_approval', 'tender_preparation', 'advertised', 'bid_received', 'bid_evaluation', 'financial_evaluation', 'awarded', 'purchase_order_issued', 'contract_signed', 'on_hold'];
         setStageCounts(procs.reduce((map, item) => {
           const label = item.current_stage_label || item.current_location || 'Procurement Officer';
           map[label] = (map[label] || 0) + 1;
@@ -88,7 +88,7 @@ export default function DirectorDashboard() {
               <button
                 key={label}
                 className="tracking-summary-card"
-                onClick={() => navigate('/director-procurements')}
+                onClick={() => navigate(`/director-procurements?stage=${encodeURIComponent(label)}`)}
               >
                 <span className="tracking-summary-count">{count}</span>
                 <span className="tracking-summary-label">{label}</span>
