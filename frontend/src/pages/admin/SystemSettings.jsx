@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Layout from '../../components/Layout';
-import api, { getSystemSettings, updateSystemSettings } from '../../api/api';
+import api, { getSystemSettings, updateSystemSettings, getTaskDelaySettings, saveTaskDelaySetting } from '../../api/api';
 
 export default function SystemSettings() {
   const [settings, setSettings] = useState({
@@ -13,6 +13,10 @@ export default function SystemSettings() {
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState('');
   const [categoryMessage, setCategoryMessage] = useState('');
+  const [taskDelaySettings, setTaskDelaySettings] = useState([]);
+  const [taskDelayForm, setTaskDelayForm] = useState({ task_name: '', allowed_delay_days: '' });
+  const [taskDelayMessage, setTaskDelayMessage] = useState('');
+  const [taskDelaySaving, setTaskDelaySaving] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
@@ -22,8 +26,20 @@ export default function SystemSettings() {
     setCategories(res.data?.categories || []);
   };
 
+  const loadTaskDelaySettings = async () => {
+    const res = await getTaskDelaySettings();
+    const tasks = res.data?.tasks || [];
+    setTaskDelaySettings(tasks);
+    if (!taskDelayForm.task_name && tasks.length > 0) {
+      setTaskDelayForm({
+        task_name: tasks[0].task_name,
+        allowed_delay_days: String(tasks[0].allowed_delay_days ?? 0),
+      });
+    }
+  };
+
   useEffect(() => {
-    Promise.all([getSystemSettings(), loadCategories()])
+    Promise.all([getSystemSettings(), loadCategories(), loadTaskDelaySettings()])
       .then(([res]) => setSettings(prev => ({ ...prev, ...(res.data?.settings || {}) })))
       .catch(() => {})
       .finally(() => setLoading(false));
@@ -45,6 +61,43 @@ export default function SystemSettings() {
       await loadCategories();
     } catch (err) {
       setCategoryMessage(err.response?.data?.message || 'Failed to add category.');
+    }
+  };
+
+  const handleTaskDelaySelect = (taskName) => {
+    const task = taskDelaySettings.find((item) => item.task_name === taskName);
+    setTaskDelayForm({
+      task_name: taskName,
+      allowed_delay_days: task ? String(task.allowed_delay_days ?? 0) : '',
+    });
+    setTaskDelayMessage('');
+  };
+
+  const saveSelectedTaskDelay = async () => {
+    if (!taskDelayForm.task_name) {
+      setTaskDelayMessage('Please select a schedule task first.');
+      return;
+    }
+
+    const days = Number.parseInt(taskDelayForm.allowed_delay_days, 10);
+    if (!Number.isFinite(days) || days < 0) {
+      setTaskDelayMessage('Allowed delay duration must be 0 or more days.');
+      return;
+    }
+
+    setTaskDelaySaving(true);
+    setTaskDelayMessage('');
+    try {
+      await saveTaskDelaySetting({
+        task_name: taskDelayForm.task_name,
+        allowed_delay_days: days,
+      });
+      setTaskDelayMessage('Allowed delay duration saved. New procurements will use this setting.');
+      await loadTaskDelaySettings();
+    } catch (err) {
+      setTaskDelayMessage(err.response?.data?.message || 'Failed to save allowed delay duration.');
+    } finally {
+      setTaskDelaySaving(false);
     }
   };
 
@@ -121,6 +174,69 @@ export default function SystemSettings() {
             <div className="form-group">
               <label className="form-label">Available Categories</label>
               <div className="form-help">{categories.length ? categories.join(', ') : 'No categories found.'}</div>
+            </div>
+
+            <div className="form-section-title">Create New Procurement Time Schedule Delay Setup</div>
+            <p className="form-help">
+              Configure how many days each standard schedule task may delay before PMTS marks it as delayed. First select one task, enter the allowed duration, then save it. These values are used automatically when a new procurement time schedule is created.
+            </p>
+            {taskDelayMessage && <div className="alert alert-info">{taskDelayMessage}</div>}
+            <div className="form-row" style={{ alignItems: 'end' }}>
+              <div className="form-group">
+                <label className="form-label">Select Schedule Task</label>
+                <select
+                  className="form-select"
+                  value={taskDelayForm.task_name}
+                  onChange={(e) => handleTaskDelaySelect(e.target.value)}
+                >
+                  <option value="">— Select schedule task —</option>
+                  {taskDelaySettings.map((task) => (
+                    <option key={task.task_name} value={task.task_name}>
+                      Task {task.sort_order}: {task.task_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group">
+                <label className="form-label">Allowed Delay Duration (Days)</label>
+                <input
+                  className="form-input"
+                  type="number"
+                  min="0"
+                  max="3650"
+                  placeholder="e.g. 3"
+                  value={taskDelayForm.allowed_delay_days}
+                  onChange={(e) => setTaskDelayForm(prev => ({ ...prev, allowed_delay_days: e.target.value }))}
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Action</label>
+                <button className="btn btn-primary" type="button" onClick={saveSelectedTaskDelay} disabled={taskDelaySaving}>
+                  {taskDelaySaving ? 'Saving…' : 'Save Delay Days'}
+                </button>
+              </div>
+            </div>
+            <div className="schedule-table-wrapper" style={{ marginTop: '10px' }}>
+              <table className="schedule-table compact-schedule-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Task</th>
+                    <th>Responsible Role</th>
+                    <th>Allowed Delay</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {taskDelaySettings.map((task) => (
+                    <tr key={`delay-setting-${task.task_name}`}>
+                      <td>{task.sort_order}</td>
+                      <td>{task.task_name}</td>
+                      <td>{task.responsible_role || '—'}</td>
+                      <td><span className="badge badge-info">{task.allowed_delay_days || 0} day(s)</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
 
             <div className="form-footer">
