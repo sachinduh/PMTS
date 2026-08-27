@@ -18,6 +18,22 @@ function DelayBadge({ task }) {
   );
 }
 
+
+function FileTrackingCell({ task }) {
+  const summary = task.file_tracking_summary || {};
+  const total = Number(summary.total_files || 0);
+  const done = Number(summary.completed_files || 0);
+  const pending = Number(summary.pending_files || 0);
+  const types = Number(summary.type_count || 0);
+  if (!total && !types) return <span className="badge badge-gray">No files</span>;
+  return (
+    <div className="text-sm">
+      <strong>{total} file(s)</strong>
+      <div className="text-muted text-xs">{done} done / {pending} pending / {types} type(s)</div>
+    </div>
+  );
+}
+
 export default function DirectorProcurementDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -44,9 +60,9 @@ export default function DirectorProcurementDetails() {
   return (
     <Layout>
       <div className="page-wrapper animate-fade-in">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+        <div className="procurement-solid-header sticky-procurement-header">
           <button className="btn btn-outline btn-sm" onClick={() => navigate(-1)}><Icon name="back" size={16} /> Back</button>
-          <div>
+          <div className="procurement-solid-header-text">
             <div className="page-title" style={{ marginBottom: 0 }}>{proc.title}</div>
             <div className="page-subtitle" style={{ marginBottom: 0 }}>Tender: {proc.tender_number || '—'} | Procurement ID: {proc.procurement_id}</div>
           </div>
@@ -56,6 +72,7 @@ export default function DirectorProcurementDetails() {
           <div className="section-title" style={{ marginBottom: '16px' }}>Procurement Details</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
             {[
+              ['File Name', proc.file_name],
               ['Procurement Type', proc.procurement_type],
               ['Category', proc.category],
               ['Estimated Amount', `Rs. ${Number(proc.estimated_amount || 0).toLocaleString()}`],
@@ -133,12 +150,13 @@ export default function DirectorProcurementDetails() {
                     <th>Actual Date</th>
                     <th>Status</th>
                     <th>Delay</th>
+                    <th>File Tracking</th>
                     <th>Remarks</th>
                   </tr>
                 </thead>
                 <tbody>
                   {schedule.length === 0 ? (
-                    <tr><td colSpan={8}><div className="empty-state"><div className="empty-state-icon"></div><div className="empty-state-text">No schedule records available.</div></div></td></tr>
+                    <tr><td colSpan={9}><div className="empty-state"><div className="empty-state-icon"></div><div className="empty-state-text">No schedule records available.</div></div></td></tr>
                   ) : schedule.map((task, i) => (
                     <tr key={task.id || i}>
                       <td>{i + 1}</td>
@@ -148,6 +166,7 @@ export default function DirectorProcurementDetails() {
                       <td>{task.actual_date || '—'}</td>
                       <td><StatusBadge status={task.status || 'pending'} /></td>
                       <td><DelayBadge task={task} /></td>
+                      <td><FileTrackingCell task={task} /></td>
                       <td>{task.remarks || '—'}</td>
                     </tr>
                   ))}

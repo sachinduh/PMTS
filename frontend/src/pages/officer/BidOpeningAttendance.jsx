@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
+import { API_BASE_URL } from '../../api/api';
 
-const API = 'http://localhost/PMTS/backend/bid_opening';
+const API = `${API_BASE_URL}/bid_opening`;
 
 export default function BidOpeningMinutes() {
   const [procurementId, setProcurementId] = useState('1');
